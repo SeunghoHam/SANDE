@@ -26,15 +26,23 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
 
+	
 	UFUNCTION()
 	void SetTargetArmLength(const float& value);
 
 
+
 	void Handle_Q_Pressed();
 	void Handle_Q_Released();
-	
+
+	void Handle_W_Pressed();
+	void Handle_W_Released();
+
+	// 마우스 방향으로 공격방향 설정하기
 	void SetRangeDirection();
 	
+	 // 마우스 위치에 공격범위 표시하기
+	void SetMouseLocationTargetIsAttackPoint();
 
 	
 	UPROPERTY(EditAnywhere)
@@ -69,17 +77,22 @@ private:
 
 	void ShowRange(const FVector& _scale, const FVector& _location);
 
+		
+
 	void HideRange();
 
 
-	FVector Q_Scale = FVector(1.f, 6.f, 1.f);
-	FVector Q_Location = FVector(0.f, 300.f, 0.f);
+	//FVector Q_Scale = FVector(1.f, 6.f, 1.f);
+	//FVector Q_Location = FVector(0.f, 300.f, 0.f);
 
 	FVector Q_Scale = FVector(1.f, 6.f, 1.f);
 	FVector Q_Location = FVector(0.f, 300.f, 0.f);
 	
 	bool bIsRangeOn =false;
+	bool bIsBaseRangeOn =false;
+
 	bool isQpressed =false;
+	bool isWpressed = false;
 	ALostArkPlayerController* PC;
 
 	

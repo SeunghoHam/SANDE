@@ -35,6 +35,10 @@ void ALostArkPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	CharacterActor = Cast<ALostArkCharacter>(GetCharacter());
+	if (CharacterActor == nullptr)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, TEXT("[Controller] : CharacterActor = null"));
+	}
 }
 
 void ALostArkPlayerController::SetupInputComponent()
@@ -67,6 +71,11 @@ void ALostArkPlayerController::SetupInputComponent()
 		ETriggerEvent::Started, this, &ALostArkPlayerController::On_Q_Trigger);
 		EnhancedInputComponent->BindAction(QInputAction,
 	ETriggerEvent::Completed, this, &ALostArkPlayerController::On_Q_Release);
+		
+		EnhancedInputComponent->BindAction(WInputAction,
+	ETriggerEvent::Started, this, &ALostArkPlayerController::On_W_Trigger);
+		EnhancedInputComponent->BindAction(WInputAction,
+	ETriggerEvent::Completed, this, &ALostArkPlayerController::On_W_Release);
 	}
 	else
 	{
@@ -148,4 +157,17 @@ void ALostArkPlayerController::On_Q_Release()
 {
 	if (!CharacterActor) return;
 	CharacterActor->Handle_Q_Released();
+}
+
+void ALostArkPlayerController::On_W_Trigger()
+{
+	if (!CharacterActor) return;
+	CharacterActor->Handle_W_Pressed();
+	
+}
+
+void ALostArkPlayerController::On_W_Release()
+{
+	if (!CharacterActor) return;
+	CharacterActor->Handle_W_Released();
 }

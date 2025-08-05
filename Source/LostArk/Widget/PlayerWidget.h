@@ -18,4 +18,7 @@ class LOSTARK_API UPlayerWidget : public UUserWidget
 
 	UPROPERTY(meta=(BindWidget))
 	UImage* Q_IconImage;
+	UPROPERTY(meta=(BindWidget))
+	UImage* W_IconImage;
+	
 };
