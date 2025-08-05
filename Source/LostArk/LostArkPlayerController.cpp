@@ -99,7 +99,7 @@ void ALostArkPlayerController::OnSetDestinationTriggered()
 	FVector End = Hit.Location;//MouseLocation + (MouseDirection * 1000.0f);
 	End.Z = CharacterActor->GetActorLocation().Z;
 	DrawDebugLine(GetWorld(), CharacterActor->GetActorLocation(), End ,FColor::Blue, false, 0.5f);
-	DrawDebugSphere(GetWorld(), End, 32.0f ,16.0f,FColor::Blue, false, 0.5f);
+	DrawDebugSphere(GetWorld(), End, 16.0f ,16.0f,FColor::Blue, false, 0.5f);
 	//DrawDebugLine(GetWorld(), mousel, End, FColor::Blue, false, 1.0f);
 	//bHitSuccessful = LineTraceForTaggedActor(GetWorld(), MouseLocation, End, Static);
 	// If we hit a surface, cache the location

@@ -38,10 +38,19 @@ public:
 
 	
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* SkillRange;
+	UStaticMeshComponent* SkillRange_Box;
 
 	UPROPERTY(EditAnywhere)
 	USceneComponent* RangeRotator;
+
+
+	// 범위스킬 최대범위 표시용
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* BaseRange;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* SkillRange_Circle;
+
 	
 	UPROPERTY(EditAnywhere, Category=Widget)
 	TSubclassOf<UPlayerWidget> PlayerWidgetClass;
@@ -62,6 +71,9 @@ private:
 
 	void HideRange();
 
+
+	FVector Q_Scale = FVector(1.f, 6.f, 1.f);
+	FVector Q_Location = FVector(0.f, 300.f, 0.f);
 
 	FVector Q_Scale = FVector(1.f, 6.f, 1.f);
 	FVector Q_Location = FVector(0.f, 300.f, 0.f);

@@ -43,6 +43,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* QInputAction;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* WInputAction;
+
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
 	uint32 bMoveToMouseCursor : 1;
@@ -62,6 +65,9 @@ protected:
 
 	void On_Q_Trigger();
 	void On_Q_Release();
+
+	void On_W_Trigger();
+	void On_W_Release();
 private:
 	FVector CachedDestination;
 
