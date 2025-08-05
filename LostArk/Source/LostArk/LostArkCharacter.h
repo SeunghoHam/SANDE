@@ -1,0 +1,75 @@
+// Copyright Epic Games, Inc. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
+#include "LostArkCharacter.generated.h"
+
+class ALostArkPlayerController;
+class UPlayerWidget;
+UCLASS(Blueprintable)
+class ALostArkCharacter : public ACharacter
+{
+	GENERATED_BODY()
+
+public:
+	ALostArkCharacter();
+
+	virtual void BeginPlay() override;
+	// Called every frame.
+	virtual void Tick(float DeltaSeconds) override;
+
+	/** Returns TopDownCameraComponent subobject **/
+	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
+	/** Returns CameraBoom subobject **/
+	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+
+	UFUNCTION()
+	void SetTargetArmLength(const float& value);
+
+
+	void Handle_Q_Pressed();
+	void Handle_Q_Released();
+	
+	void SetRangeDirection();
+	
+
+	
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* SkillRange;
+
+	UPROPERTY(EditAnywhere)
+	USceneComponent* RangeRotator;
+	
+	UPROPERTY(EditAnywhere, Category=Widget)
+	TSubclassOf<UPlayerWidget> PlayerWidgetClass;
+private:
+	/** Top down camera */
+
+	UPROPERTY()
+	UPlayerWidget* PlayerWidgetInstance = nullptr;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* TopDownCameraComponent;
+
+	/** Camera boom positioning the camera above the character */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class USpringArmComponent* CameraBoom;
+
+	void ShowRange(const FVector& _scale, const FVector& _location);
+
+	void HideRange();
+
+
+	FVector Q_Scale = FVector(1.f, 6.f, 1.f);
+	FVector Q_Location = FVector(0.f, 300.f, 0.f);
+	
+	bool bIsRangeOn =false;
+	bool isQpressed =false;
+	ALostArkPlayerController* PC;
+
+	
+};
+
